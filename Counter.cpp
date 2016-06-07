@@ -112,7 +112,7 @@ void MyString::Counter::DelStr() {
 			}
 			tmp->p_Next = this->p_Next;
 		}
-		delete this;
+		delete this; /// не работает =((
 	}
 }
 
