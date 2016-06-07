@@ -61,14 +61,14 @@ void main() {
 	MyString S2("Abc");
 
 	MyString S3(S2);
-	MyString S4(MyString("Abc"));
+	MyString S4(MyString("abc"));
 
 	MyString S5("ku-ku");
 
-	S4 = S5;
+	//S4 = S5;
 	MyString S7;
-	S7 = MyString("zxc");
-
+	S7 = MyString("arc");
+	MyString S8("ju-ku");
 	//std::cout << S7;
 
 	MyString::ShowAll();

@@ -63,10 +63,10 @@ void MyString::Counter::ShowAll() {
 }
 
 MyString::Counter* MyString::Counter::FindNxtMaxStr(Counter* tmpMax) {
-	Counter* tmp = tmpMax->p_Next->p_Next;
-	 tmpMax = tmpMax->p_Next;
-	while (tmp) {
-		if (strcmp(tmpMax->m_pStr, tmp->m_pStr) > 0) {
+	Counter* tmp = tmpMax->p_Next;
+	 //tmpMax = tmpMax->p_Next;
+	while (tmp->p_Next) {
+		if (strcmp(tmpMax->p_Next->m_pStr, tmp->p_Next->m_pStr) > 0) {
 			tmpMax = tmp;
 		}
 		tmp = tmp->p_Next;
@@ -81,11 +81,22 @@ void MyString::Counter::Sort() {
 	//
 	
 	while(RunningHead->p_Next){
-		Counter* TmpCnter= FindNxtMaxStr(RunningHead);
-		TmpCnter->p_Next = TmpCnter->p_Next->p_Next;
-		TmpCnter->p_Next = RunningHead->p_Next->p_Next;
-		RunningHead->p_Next = TmpCnter;
-		RunningHead = TmpCnter;
+		Counter* NextCounterMax= FindNxtMaxStr(RunningHead);
+		if(NextCounterMax != RunningHead){
+		//if (TmpCounter->p_Next) {
+			Counter* tmpMax = NextCounterMax->p_Next;
+			NextCounterMax->p_Next = tmpMax->p_Next;
+			tmpMax->p_Next = RunningHead->p_Next;
+			RunningHead->p_Next = tmpMax;
+			
+
+
+		//NextCounterMax->p_Next = NextCounterMax->p_Next->p_Next;
+		//NextCounterMax->p_Next = RunningHead->p_Next->p_Next;
+			
+			
+		}
+		RunningHead = RunningHead->p_Next;
 	}
 	NewHead->DelStr();
 }
@@ -93,11 +104,14 @@ void MyString::Counter::Sort() {
 void MyString::Counter::DelStr() {
 	if (m_cnt) { m_cnt--; }
 	if (!m_cnt) { 
-		Counter* tmp = Head;
-		while (tmp->p_Next != this) {
-			tmp = tmp->p_Next;
+		if (this == Head) { Head = Head->p_Next; }
+		else {
+			Counter* tmp = Head;
+			while (tmp->p_Next != this) {
+				tmp = tmp->p_Next;
+			}
+			tmp->p_Next = this->p_Next;
 		}
-		tmp->p_Next = this->p_Next;
 		delete this;
 	}
 }
@@ -106,4 +120,5 @@ MyString::Counter::~Counter() {
 	if (m_pStr) {
 		delete m_pStr;
 	}
+	
 }
