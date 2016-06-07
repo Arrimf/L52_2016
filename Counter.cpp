@@ -61,7 +61,7 @@ void MyString::Counter::ShowAll() {
 		pointer = pointer->p_Next;
 	}
 }
-}
+
 MyString::Counter* MyString::Counter::FindNxtMaxStr(Counter* tmpMax) {
 	Counter* tmp = tmpMax->p_Next->p_Next;
 	 tmpMax = tmpMax->p_Next;
@@ -94,7 +94,7 @@ void MyString::Counter::DelStr() {
 	if (m_cnt) { m_cnt--; }
 	if (!m_cnt) { 
 		Counter* tmp = Head;
-		while (tmp->p_Next == this) {
+		while (tmp->p_Next != this) {
 			tmp = tmp->p_Next;
 		}
 		tmp->p_Next = this->p_Next;
