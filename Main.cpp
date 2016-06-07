@@ -62,9 +62,9 @@ void main() {
 
 	MyString S3(S2);
 	MyString S4(MyString("abc"));
-
+	{
 	MyString S5("ku-ku");
-
+	}
 	//S4 = S5;
 	MyString S7;
 	S7 = MyString("arc");

@@ -98,13 +98,16 @@ void MyString::Counter::Sort() {
 		}
 		RunningHead = RunningHead->p_Next;
 	}
-	NewHead->DelStr();
-}
+	Head = NewHead->p_Next;
+//	delete NewHead;///&/// 
+ }
 
 void MyString::Counter::DelStr() {
 	if (m_cnt) { m_cnt--; }
 	if (!m_cnt) { 
-		if (this == Head) { Head = Head->p_Next; }
+		if (this == Head) { 
+			Head = Head->p_Next; 
+		}
 		else {
 			Counter* tmp = Head;
 			while (tmp->p_Next != this) {
