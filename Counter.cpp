@@ -14,7 +14,7 @@ MyString::Counter::Counter(const char*str) {
 		strcpy(m_pStr, str);
 	}
 }
-{}
+
 MyString::Counter::Counter(char*&& str) {
 	p_Next = MyString::Counter::Head;
 	MyString::Counter::Head = this;
