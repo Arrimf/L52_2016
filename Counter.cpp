@@ -13,6 +13,7 @@ MyString::Counter::Counter(const char*str) {
 		m_pStr = new char[strlen(str) + 1];
 		strcpy(m_pStr, str);
 	}
+	else { m_pStr = nullptr; }
 }
 
 MyString::Counter::Counter(char*&& str) {
@@ -98,7 +99,8 @@ void MyString::Counter::Sort() {
 		}
 		RunningHead = RunningHead->p_Next;
 	}
-	Head = NewHead->p_Next;
+	//Head = NewHead->p_Next;
+	NewHead->DelStr();
 //	delete NewHead;///&/// 
  }
 
@@ -115,7 +117,7 @@ void MyString::Counter::DelStr() {
 			}
 			tmp->p_Next = this->p_Next;
 		}
-		delete this; /// не работает =((
+		delete this; 
 	}
 }
 

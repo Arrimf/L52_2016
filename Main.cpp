@@ -36,7 +36,7 @@
 //Х	вывести строки по алфавиту
 //Х	Е
 //ку
-
+#include <string>
 #include <tchar.h>
 #include <iostream>
 #include <conio.h>
@@ -56,15 +56,19 @@
 MyString::Counter* MyString::Counter::Head = nullptr;
 
 void main() {
+	MyString S11("a");
+	MyString S12("z");
 
+	std::cout << (S11);
+	std::cout << S12;
 	MyString S1("Abc");
 	MyString S2("Abc");
 
 	MyString S3(S2);
 	MyString S4(MyString("abc"));
-	{
+	
 	MyString S5("ku-ku");
-	}
+	
 	//S4 = S5;
 	MyString S7;
 	S7 = MyString("arc");
