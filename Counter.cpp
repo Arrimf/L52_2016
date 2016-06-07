@@ -14,6 +14,7 @@ MyString::Counter::Counter(const char*str) {
 		strcpy(m_pStr, str);
 	}
 }
+{}
 MyString::Counter::Counter(char*&& str) {
 	p_Next = MyString::Counter::Head;
 	MyString::Counter::Head = this;
@@ -59,6 +60,7 @@ void MyString::Counter::ShowAll() {
 		std::cout << pointer;
 		pointer = pointer->p_Next;
 	}
+}
 }
 MyString::Counter* MyString::Counter::FindNxtMaxStr(Counter* tmpMax) {
 	Counter* tmp = tmpMax->p_Next->p_Next;
