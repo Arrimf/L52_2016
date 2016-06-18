@@ -6,8 +6,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 MyString::Counter::Counter(const char*str) {
-	p_Next = MyString::Counter::Head;
-	MyString::Counter::Head = this;
+	p_Next = /*MyString::Counter::*/Head;
+	/*MyString::Counter::*/Head = this;
 	m_cnt = 1;
 	if (str) {
 		m_pStr = new char[strlen(str) + 1];
@@ -42,7 +42,7 @@ MyString::Counter* MyString::Counter::FindMovStr(char* str) {
 	while (pointer) {
 		if (!(strcmp(pointer->m_pStr, str))) {
 			pointer->m_cnt++;
-			delete str;           /////////??????
+			delete str;           /////////?????? используется в мув.конструкторе...
 			return pointer;
 		}
 		pointer = pointer->p_Next;
@@ -76,8 +76,9 @@ MyString::Counter* MyString::Counter::FindNxtMaxStr(Counter* tmpMax) {
 }
 void MyString::Counter::Sort() {
 	//Counter* RunningHead = Head;
-	Counter* NewHead = new Counter();
-	Counter* RunningHead = NewHead;
+	//Counter* NewHead = new Counter();
+	Counter NewHead ;
+	Counter* RunningHead = Head;
 
 	//
 	
@@ -99,8 +100,8 @@ void MyString::Counter::Sort() {
 		}
 		RunningHead = RunningHead->p_Next;
 	}
-	//Head = NewHead->p_Next;
-	NewHead->DelStr();
+	Head = NewHead.p_Next;
+	//NewHead.DelStr();
 //	delete NewHead;///&/// 
  }
 

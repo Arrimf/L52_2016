@@ -26,14 +26,18 @@ MyString::MyString(MyString&& other) {
 
 
 MyString& MyString::operator=(const MyString& other) {
-	this->~MyString();
-	m_counter_p = other.m_counter_p;
+	if (this->m_counter_p != other.m_counter_p) {
+		this->~MyString();
+		m_counter_p = other.m_counter_p;
+	}
 	m_counter_p->m_cnt++;
 	return *this;
 }
 MyString& MyString::operator=(MyString&& other) {
-	this->~MyString();
-	m_counter_p = other.m_counter_p;
+	if (this->m_counter_p != other.m_counter_p) {
+		this->~MyString();
+		m_counter_p = other.m_counter_p;
+	}
 	other.m_counter_p = nullptr;
 	return *this;
 }
